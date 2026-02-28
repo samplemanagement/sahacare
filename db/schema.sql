@@ -24,7 +24,6 @@ create table if not exists site_visits (
   created_at timestamptz not null default now()
 );
 
-
 create index if not exists idx_site_visits_created_at on site_visits(created_at desc);
 
 create table if not exists event_logs (
