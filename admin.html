@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SahaCare Admin | Waitlist Ops</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Manrope:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="theme-flow">
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="./index.html">SahaCare</a>
+        <nav>
+          <a href="./index.html">Home</a>
+          <a href="./how-it-works.html">How It Works</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <section class="container section-shell admin-shell">
+        <h1>Waitlist Admin</h1>
+        <p class="subtitle">View leads, update interview status, and export CSV.</p>
+
+        <form id="admin-auth-form" class="admin-auth">
+          <label for="admin-key">Admin API Key</label>
+          <input id="admin-key" type="password" autocomplete="off" required />
+          <button type="submit" class="button">Load Leads</button>
+          <button type="button" id="export-btn" class="button ghost">Export CSV</button>
+        </form>
+
+        <p id="admin-message" class="form-message" aria-live="polite"></p>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Source</th>
+                <th>Created</th>
+                <th>Update</th>
+              </tr>
+            </thead>
+            <tbody id="leads-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="./admin.js"></script>
+  </body>
+</html>

@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SahaCare | Care Across Every Distance</title>
+    <meta
+      name="description"
+      content="SahaCare helps Indian and Desi families stay on top of parent health, medications, and care updates from anywhere."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Manrope:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="theme-home">
+    <div class="bg-orb orb-1" aria-hidden="true"></div>
+    <div class="bg-orb orb-2" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="./index.html">SahaCare</a>
+        <nav>
+          <a href="#about">About</a>
+          <a href="#waitlist">Join Waitlist</a>
+          <a href="./how-it-works.html">How It Works</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero reveal">
+        <div class="container hero-layout">
+          <div class="hero-copy">
+            <p class="eyebrow">Family care for Desi homes worldwide</p>
+            <h1>When your parents are far, their care should not feel far.</h1>
+            <p class="subtitle">
+              SahaCare brings medications, doctor updates, and daily health
+              signals into one calm family view so everyone stays aligned.
+            </p>
+            <div class="hero-cta">
+              <a class="button" href="#waitlist">Join the Waitlist</a>
+              <a class="button ghost" href="#about">Learn More</a>
+            </div>
+            <div class="trust-row" aria-label="Core value indicators">
+              <span>Private sharing</span>
+              <span>Elder-friendly</span>
+              <span>One family timeline</span>
+            </div>
+          </div>
+
+          <div class="hero-visual" role="img" aria-label="Indian family together at home">
+            <img
+              src="https://images.unsplash.com/photo-1590086782792-42dd2350140d?auto=format&fit=crop&w=1300&q=80"
+              alt="Smiling Indian family sitting together in a living room"
+              loading="eager"
+            />
+            <div class="metric-card top">
+              <span class="metric-icon">❤</span>
+              <div>
+                <p class="metric-title">Medication Adherence</p>
+                <p class="metric-value">92% this week</p>
+              </div>
+            </div>
+            <div class="metric-card bottom">
+              <span class="metric-icon">✓</span>
+              <div>
+                <p class="metric-title">Doctor Follow-up</p>
+                <p class="metric-value">Shared with family</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="about reveal">
+        <div class="container section-shell">
+          <h2>About SahaCare</h2>
+          <p>
+            Families already use wearables and health apps, but data is split
+            across devices and people. SahaCare connects the picture for adult
+            children, elders, and caregivers with consent-first sharing.
+          </p>
+          <div class="feature-grid">
+            <article class="feature">
+              <h3>Unified health timeline</h3>
+              <p>See meds, appointments, doses, and care notes in one stream.</p>
+            </article>
+            <article class="feature">
+              <h3>Proactive family alerts</h3>
+              <p>Know what needs attention before it becomes a bigger concern.</p>
+            </article>
+            <article class="feature">
+              <h3>Built for real caregivers</h3>
+              <p>Designed for cross-city and cross-country Desi family routines.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="waitlist" class="waitlist reveal">
+        <div class="container section-shell waitlist-shell">
+          <div>
+            <p class="eyebrow">Early Access</p>
+            <h2>Join the first wave of families shaping SahaCare.</h2>
+            <p>
+              Leave your email and role. We will invite you for early access and
+              product interviews.
+            </p>
+          </div>
+
+          <form id="waitlist-form" class="waitlist-form" novalidate>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required />
+
+            <label for="role">I am</label>
+            <select id="role" name="role" required>
+              <option value="">Select role</option>
+              <option value="adult-child-caregiver">Adult child / caregiver</option>
+              <option value="parent-elder-user">Parent / elder user</option>
+            </select>
+
+            <button class="button" type="submit">Join the Waitlist</button>
+            <p id="form-message" class="form-message" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© <span id="year"></span> SahaCare</p>
+        <a href="./how-it-works.html">See product flow</a>
+      </div>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

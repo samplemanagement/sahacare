@@ -1,0 +1,9 @@
+{
+  "name": "sahacare-v0",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "check:syntax": "./scripts/check-syntax.sh",
+    "check:files": "test -f index.html && test -f how-it-works.html && test -f admin.html && test -f styles.css && test -f script.js"
+  }
+}
