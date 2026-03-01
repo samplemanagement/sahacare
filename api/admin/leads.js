@@ -1,18 +1,13 @@
-const { getEnv } = require("../_lib/env");
+const { isAdminRequestAuthorized } = require("../_lib/admin-auth");
 const { json, parseJsonBody } = require("../_lib/http");
 const { logEvent, supabaseRequest } = require("../_lib/supabase");
-
-function isAuthorized(req) {
-  const adminKey = req.headers["x-admin-key"];
-  return adminKey && adminKey === getEnv("ADMIN_API_KEY");
-}
 
 function isValidUuid(value) {
   return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
 }
 
 module.exports = async (req, res) => {
-  if (!isAuthorized(req)) {
+  if (!isAdminRequestAuthorized(req)) {
     await logEvent({
       eventType: "admin_unauthorized",
       route: "/api/admin/leads",

@@ -1,10 +1,5 @@
-const { getEnv } = require("../_lib/env");
+const { isAdminRequestAuthorized } = require("../_lib/admin-auth");
 const { supabaseRequest } = require("../_lib/supabase");
-
-function isAuthorized(req) {
-  const adminKey = req.headers["x-admin-key"];
-  return adminKey && adminKey === getEnv("ADMIN_API_KEY");
-}
 
 module.exports = async (req, res) => {
   if (req.method !== "GET") {
@@ -12,7 +7,7 @@ module.exports = async (req, res) => {
     return res.end("Method not allowed");
   }
 
-  if (!isAuthorized(req)) {
+  if (!isAdminRequestAuthorized(req)) {
     res.statusCode = 401;
     return res.end("Unauthorized");
   }

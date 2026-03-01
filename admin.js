@@ -1,11 +1,10 @@
 const authForm = document.getElementById("admin-auth-form");
 const keyInput = document.getElementById("admin-key");
 const exportBtn = document.getElementById("export-btn");
+const logoutBtn = document.getElementById("logout-btn");
 const message = document.getElementById("admin-message");
 const leadsBody = document.getElementById("leads-body");
 const year = document.getElementById("year");
-
-let adminKey = "";
 
 const statusOptions = ["new", "contacted", "interviewed", "pilot_candidate"];
 
@@ -13,31 +12,40 @@ if (year) {
   year.textContent = String(new Date().getFullYear());
 }
 
+initAdminSession();
+
 authForm?.addEventListener("submit", async (event) => {
   event.preventDefault();
-  adminKey = keyInput.value.trim();
+  const adminKey = keyInput.value.trim();
   if (!adminKey) {
     renderMessage("Admin key required.", "error");
     return;
   }
+
+  const response = await fetch("/api/admin/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ adminKey }),
+  });
+
+  if (!response.ok) {
+    renderMessage("Could not authenticate admin key.", "error");
+    return;
+  }
+
+  keyInput.value = "";
   await loadLeads();
 });
 
 exportBtn?.addEventListener("click", async () => {
-  if (!adminKey) {
-    renderMessage("Load leads first by entering admin key.", "error");
-    return;
-  }
-
   const response = await fetch("/api/admin/export", {
     method: "GET",
-    headers: {
-      "x-admin-key": adminKey,
-    },
   });
 
   if (!response.ok) {
-    renderMessage("CSV export failed.", "error");
+    renderMessage("CSV export failed. Please login again.", "error");
     return;
   }
 
@@ -51,16 +59,19 @@ exportBtn?.addEventListener("click", async () => {
   renderMessage("CSV exported.", "success");
 });
 
+logoutBtn?.addEventListener("click", async () => {
+  await fetch("/api/admin/logout", { method: "POST" });
+  leadsBody.innerHTML = "";
+  renderMessage("Logged out.", "success");
+});
+
 async function loadLeads() {
   const response = await fetch("/api/admin/leads", {
     method: "GET",
-    headers: {
-      "x-admin-key": adminKey,
-    },
   });
 
   if (!response.ok) {
-    renderMessage("Could not load leads. Check API key.", "error");
+    renderMessage("Could not load leads. Login required.", "error");
     return;
   }
 
@@ -102,7 +113,6 @@ async function loadLeads() {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          "x-admin-key": adminKey,
         },
         body: JSON.stringify({ id, status }),
       });
@@ -117,6 +127,22 @@ async function loadLeads() {
   });
 
   renderMessage(`Loaded ${data.leads.length} leads.`, "success");
+}
+
+async function initAdminSession() {
+  try {
+    const response = await fetch("/api/admin/session");
+    if (!response.ok) {
+      return;
+    }
+
+    const body = await response.json();
+    if (body.authenticated) {
+      await loadLeads();
+    }
+  } catch (_error) {
+    // No-op on bootstrap checks.
+  }
 }
 
 function renderMessage(text, type) {

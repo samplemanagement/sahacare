@@ -2,6 +2,7 @@ const { EmailSendError, sendEmail } = require("./_lib/email");
 const { getEnv } = require("./_lib/env");
 const { json, parseJsonBody, getClientIp } = require("./_lib/http");
 const { supabaseRequest, logEvent } = require("./_lib/supabase");
+const { verifyTurnstileToken } = require("./_lib/turnstile");
 
 const VALID_ROLES = new Set(["adult-child-caregiver", "parent-elder-user"]);
 
@@ -72,6 +73,7 @@ module.exports = async (req, res) => {
     const email = String(body.email || "").trim().toLowerCase();
     const role = String(body.role || "").trim();
     const honeypot = String(body.company || "").trim();
+    const turnstileToken = String(body.turnstileToken || "").trim();
     const ipAddress = getClientIp(req);
 
     if (honeypot) {
@@ -94,6 +96,33 @@ module.exports = async (req, res) => {
         details: { emailPresent: Boolean(email), role },
       });
       return json(res, 400, { error: "Valid email and role are required." });
+    }
+
+    const turnstile = await verifyTurnstileToken({
+      token: turnstileToken,
+      ip: ipAddress,
+    });
+    if (!turnstile.ok) {
+      await recordAttempt({ email, ipAddress, accepted: false, reason: "turnstile_failed" });
+      await logEvent({
+        eventType: "waitlist_turnstile_failed",
+        route: "/api/waitlist",
+        statusCode: 400,
+        details: { email, code: turnstile.code, errors: turnstile.errors || [] },
+      });
+      return json(res, 400, {
+        error: "Security check failed. Please retry.",
+        code: "TURNSTILE_FAILED",
+      });
+    }
+
+    if (turnstile.skipped) {
+      await logEvent({
+        eventType: "waitlist_turnstile_skipped",
+        route: "/api/waitlist",
+        statusCode: 200,
+        details: {},
+      });
     }
 
     if (await isRateLimited({ email, ipAddress })) {

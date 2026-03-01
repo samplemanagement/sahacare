@@ -5,6 +5,9 @@ if (year) {
 
 const waitlistForm = document.getElementById("waitlist-form");
 const formMessage = document.getElementById("form-message");
+const turnstileContainer = document.getElementById("turnstile-widget");
+let turnstileToken = "";
+let turnstileRequired = false;
 
 if (waitlistForm) {
   waitlistForm.addEventListener("submit", async (event) => {
@@ -26,13 +29,18 @@ if (waitlistForm) {
       return;
     }
 
+    if (turnstileRequired && !turnstileToken) {
+      renderMessage("Please complete the security check.", "error");
+      return;
+    }
+
     try {
       const response = await fetch("/api/waitlist", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, role, company }),
+        body: JSON.stringify({ email, role, company, turnstileToken }),
       });
 
       if (!response.ok) {
@@ -55,6 +63,11 @@ if (waitlistForm) {
           return;
         }
 
+        if (body.code === "TURNSTILE_FAILED") {
+          renderMessage("Please complete the security check and try again.", "error");
+          return;
+        }
+
         renderMessage(body.error || "Could not join waitlist right now.", "error");
         return;
       }
@@ -66,6 +79,8 @@ if (waitlistForm) {
     }
   });
 }
+
+initTurnstile();
 
 const visitKey = `sahacare_visit_${window.location.pathname}`;
 if (!sessionStorage.getItem(visitKey)) {
@@ -90,6 +105,61 @@ function renderMessage(message, type) {
   formMessage.textContent = message;
   formMessage.classList.remove("success", "error");
   formMessage.classList.add(type);
+}
+
+async function initTurnstile() {
+  if (!waitlistForm || !turnstileContainer) {
+    return;
+  }
+
+  try {
+    const response = await fetch("/api/public-config");
+    const config = await response.json();
+    if (!config.turnstileSiteKey) {
+      return;
+    }
+
+    turnstileRequired = true;
+
+    await waitForTurnstileScript();
+    if (!window.turnstile) {
+      turnstileRequired = false;
+      return;
+    }
+    window.turnstile.render("#turnstile-widget", {
+      sitekey: config.turnstileSiteKey,
+      callback: (token) => {
+        turnstileToken = token;
+      },
+      "error-callback": () => {
+        turnstileToken = "";
+      },
+      "expired-callback": () => {
+        turnstileToken = "";
+      },
+      theme: "light",
+    });
+  } catch (_error) {
+    // Ignore non-blocking captcha bootstrap errors.
+  }
+}
+
+function waitForTurnstileScript() {
+  return new Promise((resolve) => {
+    if (window.turnstile) {
+      resolve();
+      return;
+    }
+
+    let checks = 0;
+    const timer = setInterval(() => {
+      if (window.turnstile || checks > 120) {
+        clearInterval(timer);
+        resolve();
+      }
+      checks += 1;
+    }, 50);
+  });
 }
 
 const revealElements = document.querySelectorAll(".reveal");
