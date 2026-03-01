@@ -13,6 +13,7 @@ if (waitlistForm) {
     const data = new FormData(waitlistForm);
     const email = String(data.get("email") || "").trim();
     const role = String(data.get("role") || "").trim();
+    const company = String(data.get("company") || "").trim();
 
     if (!email || !role) {
       renderMessage("Please add your email and role.", "error");
@@ -31,11 +32,29 @@ if (waitlistForm) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, role }),
+        body: JSON.stringify({ email, role, company }),
       });
 
       if (!response.ok) {
         const body = await response.json().catch(() => ({}));
+        if (body.code === "RATE_LIMITED") {
+          renderMessage("Too many attempts. Please try again in a little while.", "error");
+          return;
+        }
+
+        if (body.code === "EMAIL_TEST_MODE_RESTRICTED") {
+          renderMessage(
+            "Signup saved. Confirmation email is temporarily restricted by email provider test mode.",
+            "error",
+          );
+          return;
+        }
+
+        if (body.code === "EMAIL_DELIVERY_FAILED") {
+          renderMessage("Signup saved, but confirmation email failed. Please retry shortly.", "error");
+          return;
+        }
+
         renderMessage(body.error || "Could not join waitlist right now.", "error");
         return;
       }

@@ -1,10 +1,5 @@
+const { json } = require("./_lib/http");
 const { supabaseRequest } = require("./_lib/supabase");
-
-function json(res, statusCode, body) {
-  res.statusCode = statusCode;
-  res.setHeader("Content-Type", "application/json");
-  res.end(JSON.stringify(body));
-}
 
 module.exports = async (req, res) => {
   if (req.method !== "GET") {

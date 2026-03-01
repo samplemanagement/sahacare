@@ -3,10 +3,15 @@ const keyInput = document.getElementById("admin-key");
 const exportBtn = document.getElementById("export-btn");
 const message = document.getElementById("admin-message");
 const leadsBody = document.getElementById("leads-body");
+const year = document.getElementById("year");
 
 let adminKey = "";
 
 const statusOptions = ["new", "contacted", "interviewed", "pilot_candidate"];
+
+if (year) {
+  year.textContent = String(new Date().getFullYear());
+}
 
 authForm?.addEventListener("submit", async (event) => {
   event.preventDefault();

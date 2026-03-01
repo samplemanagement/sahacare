@@ -1,5 +1,14 @@
 const { getEnv } = require("./env");
 
+class EmailSendError extends Error {
+  constructor(message, { statusCode, providerMessage } = {}) {
+    super(message);
+    this.name = "EmailSendError";
+    this.statusCode = statusCode;
+    this.providerMessage = providerMessage;
+  }
+}
+
 async function sendEmail({ to, subject, html, text, from }) {
   const apiKey = getEnv("RESEND_API_KEY");
   const response = await fetch("https://api.resend.com/emails", {
@@ -19,7 +28,10 @@ async function sendEmail({ to, subject, html, text, from }) {
 
   if (!response.ok) {
     const textBody = await response.text();
-    throw new Error(`Resend failed (${response.status}): ${textBody}`);
+    throw new EmailSendError(`Resend failed (${response.status})`, {
+      statusCode: response.status,
+      providerMessage: textBody,
+    });
   }
 
   return response.json();
@@ -27,4 +39,5 @@ async function sendEmail({ to, subject, html, text, from }) {
 
 module.exports = {
   sendEmail,
+  EmailSendError,
 };

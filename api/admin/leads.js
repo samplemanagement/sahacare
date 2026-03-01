@@ -1,15 +1,14 @@
 const { getEnv } = require("../_lib/env");
+const { json, parseJsonBody } = require("../_lib/http");
 const { logEvent, supabaseRequest } = require("../_lib/supabase");
-
-function json(res, statusCode, body) {
-  res.statusCode = statusCode;
-  res.setHeader("Content-Type", "application/json");
-  res.end(JSON.stringify(body));
-}
 
 function isAuthorized(req) {
   const adminKey = req.headers["x-admin-key"];
   return adminKey && adminKey === getEnv("ADMIN_API_KEY");
+}
+
+function isValidUuid(value) {
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
 }
 
 module.exports = async (req, res) => {
@@ -33,13 +32,13 @@ module.exports = async (req, res) => {
     }
 
     if (req.method === "PATCH") {
-      const { id, status } = req.body || {};
+      const { id, status } = await parseJsonBody(req);
       if (!id || !status) {
         return json(res, 400, { error: "id and status are required" });
       }
 
       const validStatuses = ["new", "contacted", "interviewed", "pilot_candidate"];
-      if (!validStatuses.includes(status)) {
+      if (!validStatuses.includes(status) || !isValidUuid(id)) {
         return json(res, 400, { error: "Invalid status" });
       }
 

@@ -1,10 +1,5 @@
+const { json, parseJsonBody, getClientIp } = require("./_lib/http");
 const { supabaseRequest } = require("./_lib/supabase");
-
-function json(res, statusCode, body) {
-  res.statusCode = statusCode;
-  res.setHeader("Content-Type", "application/json");
-  res.end(JSON.stringify(body));
-}
 
 module.exports = async (req, res) => {
   if (req.method !== "POST") {
@@ -12,14 +7,15 @@ module.exports = async (req, res) => {
   }
 
   try {
+    const body = await parseJsonBody(req);
     await supabaseRequest("site_visits", {
       method: "POST",
       headers: { Prefer: "return=minimal" },
       body: JSON.stringify({
-        path: req.body?.path || req.headers.referer || "/",
+        path: body.path || req.headers.referer || "/",
         referrer: req.headers.referer || null,
         user_agent: req.headers["user-agent"] || "unknown",
-        ip_address: req.headers["x-forwarded-for"] || req.socket.remoteAddress || null,
+        ip_address: getClientIp(req),
       }),
     });
 

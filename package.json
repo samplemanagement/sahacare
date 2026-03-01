@@ -7,6 +7,6 @@
   },
   "scripts": {
     "check:syntax": "./scripts/check-syntax.sh",
-    "check:files": "test -f index.html && test -f how-it-works.html && test -f admin.html && test -f styles.css && test -f script.js"
+    "check:files": "test -f index.html && test -f how-it-works.html && test -f admin.html && test -f privacy.html && test -f terms.html && test -f styles.css && test -f script.js"
   }
 }
