@@ -1,0 +1,27 @@
+<svg width="360" height="720" viewBox="0 0 360 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="phone" x1="40" y1="24" x2="302" y2="700" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF4EC"/>
+      <stop offset="1" stop-color="#F3EDFF"/>
+    </linearGradient>
+    <linearGradient id="badge" x1="70" y1="220" x2="278" y2="418" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF7A6A"/>
+      <stop offset="1" stop-color="#7C6BFF"/>
+    </linearGradient>
+  </defs>
+  <rect x="18" y="10" width="324" height="700" rx="44" fill="#111827"/>
+  <rect x="32" y="26" width="296" height="668" rx="36" fill="url(#phone)"/>
+  <rect x="146" y="40" width="68" height="8" rx="4" fill="#DFD5CC"/>
+  <text x="180" y="95" text-anchor="middle" fill="#5D6675" font-size="18" font-family="Inter, sans-serif" font-weight="600">Sahacare Alert</text>
+  <rect x="58" y="160" width="244" height="260" rx="22" fill="#FFFFFF" stroke="#EEDACE"/>
+  <circle cx="92" cy="202" r="14" fill="url(#badge)"/>
+  <text x="118" y="207" fill="#9A3D2E" font-size="15" font-family="Inter, sans-serif" font-weight="700">Health Signal</text>
+  <text x="74" y="248" fill="#3A4456" font-size="16" font-family="Inter, sans-serif" font-weight="600">Elevated resting heart-rate</text>
+  <text x="74" y="277" fill="#647085" font-size="14" font-family="Inter, sans-serif">Detected on 21 Feb, 7:14 AM</text>
+  <text x="74" y="307" fill="#647085" font-size="14" font-family="Inter, sans-serif">Suggested action: schedule check-in</text>
+  <rect x="74" y="334" width="210" height="42" rx="14" fill="#FFF2E9"/>
+  <text x="179" y="360" text-anchor="middle" fill="#A34731" font-size="14" font-family="Inter, sans-serif" font-weight="700">Notify family now</text>
+  <rect x="104" y="468" width="152" height="18" rx="9" fill="#E2DAFF"/>
+  <rect x="88" y="500" width="184" height="14" rx="7" fill="#F6DED3"/>
+  <rect x="142" y="654" width="76" height="6" rx="3" fill="#D7CFC8"/>
+</svg>

@@ -58,8 +58,8 @@
           </div>
           <figure class="hero-image-shell">
             <img
-              src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1500&q=80"
-              alt="Warm family moment at home, representing connected caregiving"
+              src="./assets/hero-family.svg"
+              alt="Warm illustration of a family connected to a shared care dashboard"
               loading="eager"
             />
           </figure>
@@ -91,15 +91,22 @@
       <section id="story" class="section reveal" data-section-tone="0.35">
         <div class="container story-shell panel">
           <div class="story-visual">
+            <svg class="story-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <marker id="arrowhead" markerWidth="6" markerHeight="6" refX="5.2" refY="3" orient="auto">
+                  <polygon points="0 0, 6 3, 0 6" fill="#ff8f7f"></polygon>
+                </marker>
+              </defs>
+              <line x1="20" y1="24" x2="47" y2="47" marker-end="url(#arrowhead)" />
+              <line x1="81" y1="24" x2="53" y2="47" marker-end="url(#arrowhead)" />
+              <line x1="20" y1="78" x2="47" y2="53" marker-end="url(#arrowhead)" />
+              <line x1="81" y1="78" x2="53" y2="53" marker-end="url(#arrowhead)" />
+            </svg>
             <div class="story-node main">Family Dashboard</div>
             <div class="story-node n1">Wearables</div>
             <div class="story-node n2">Medication Logs</div>
             <div class="story-node n3">Doctor Notes</div>
             <div class="story-node n4">Caregiver Updates</div>
-            <span class="story-link l1"></span>
-            <span class="story-link l2"></span>
-            <span class="story-link l3"></span>
-            <span class="story-link l4"></span>
           </div>
           <div class="story-copy">
             <p class="eyebrow">Effortless health logging for everyone</p>
@@ -108,12 +115,6 @@
               Devices, manual logs, and doctor updates converge in one trusted family view. Everyone sees what
               matters, without scattered calls and message threads.
             </p>
-            <img
-              class="story-gif"
-              src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3l0anFqN3Q0dHhpYjRjN2h4MG9hZHRnYWdyMGZ2aTFqM3M4N3hjaCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/l0MYt5jPR6QX5pnqM/giphy.gif"
-              alt="Animated health dashboard concept"
-              loading="lazy"
-            />
           </div>
         </div>
       </section>
@@ -128,47 +129,22 @@
             <article class="feature-tile t1">
               <h3>Multi-device aggregation</h3>
               <p>Smartwatches, rings, BP devices, and manual records in one frame.</p>
-              <img
-                src="https://images.unsplash.com/photo-1575311373937-040b8e1fd5b6?auto=format&fit=crop&w=900&q=80"
-                alt="Health tracking device close-up"
-                loading="lazy"
-              />
             </article>
             <article class="feature-tile t2">
               <h3>Shared family timeline</h3>
               <p>One source of truth for siblings and caregivers.</p>
-              <img
-                src="https://images.unsplash.com/photo-1516589091380-5d8e87df6991?auto=format&fit=crop&w=900&q=80"
-                alt="Family reviewing information together"
-                loading="lazy"
-              />
             </article>
             <article class="feature-tile t3">
               <h3>Medication & appointment cadence</h3>
               <p>Stay ahead with reminders and completion visibility.</p>
-              <img
-                src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGlzOWR0dW15cW5pbW02YW4wcnNiaXdoM2Nxc2h5cWIzbjE5bTdieCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3o7aD2saalBwwftBIY/giphy.gif"
-                alt="Animated medication reminder concept"
-                loading="lazy"
-              />
             </article>
             <article class="feature-tile t4">
               <h3>Doctor updates</h3>
               <p>Secure notes and guidance visible to approved family members.</p>
-              <img
-                src="https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=900&q=80"
-                alt="Doctor discussing patient records"
-                loading="lazy"
-              />
             </article>
             <article class="feature-tile t5">
               <h3>AI insight cues</h3>
               <p>Spot changes early with contextual alerts.</p>
-              <img
-                src="https://images.unsplash.com/photo-1551281044-8dc7d64f0aa8?auto=format&fit=crop&w=900&q=80"
-                alt="Analytics dashboard chart"
-                loading="lazy"
-              />
             </article>
           </div>
         </div>
@@ -207,14 +183,12 @@
             <h2>Signal, not noise.</h2>
             <img
               class="ai-gif"
-              src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmx6dnh6YXV3Mmx6Z2F3aW96aHNyMDhlZG1xdTZ6a2lyNWx2Y3YwNyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/26tn33aiTi1jkl6H6/giphy.gif"
-              alt="Animated line chart representing trend analysis"
+              src="./assets/ai-preview.svg"
+              alt="Sahacare AI analytics preview interface"
               loading="lazy"
             />
-            <div class="insight card">
-              <p>
-                Sahacare noticed elevated resting heart-rate trend on 21 Feb. Consider scheduling a check-in.
-              </p>
+            <div class="alert-preview">
+              <img src="./assets/lock-alert.svg" alt="Phone lock screen showing a Sahacare alert" loading="lazy" />
             </div>
           </article>
 
@@ -225,7 +199,12 @@
               Clinics can post visit updates and care instructions to an approved family timeline so the next step
               is never lost.
             </p>
-            <p class="callout">Secure updates from clinics and hospitals.</p>
+            <ul class="provider-list">
+              <li>Secure updates from clinics and hospitals</li>
+              <li>Shared discharge notes and follow-up instructions</li>
+              <li>Family-visible medication adjustments from care providers</li>
+              <li>Consistent communication trail for every visit</li>
+            </ul>
           </article>
         </div>
       </section>
