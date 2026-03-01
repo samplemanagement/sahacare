@@ -1,6 +1,6 @@
 # SahaCare v0.6
 
-Landing site + waitlist backend for interview-phase validation.
+Landing site + waitlist backend for interview-phase validation. THIS README must be changed.
 
 ## Included
 
