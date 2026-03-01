@@ -6,6 +6,9 @@ if (year) {
 const waitlistForm = document.getElementById("waitlist-form");
 const formMessage = document.getElementById("form-message");
 const turnstileContainer = document.getElementById("turnstile-widget");
+const revealElements = document.querySelectorAll(".reveal");
+const toneSections = document.querySelectorAll("[data-section-tone]");
+
 let turnstileToken = "";
 let turnstileRequired = false;
 
@@ -73,14 +76,13 @@ if (waitlistForm) {
       }
 
       waitlistForm.reset();
+      turnstileToken = "";
       renderMessage("You are in. Check your email for confirmation.", "success");
     } catch (_error) {
       renderMessage("Network issue. Please try again in a moment.", "error");
     }
   });
 }
-
-initTurnstile();
 
 const visitKey = `sahacare_visit_${window.location.pathname}`;
 if (!sessionStorage.getItem(visitKey)) {
@@ -96,6 +98,10 @@ if (!sessionStorage.getItem(visitKey)) {
 
   sessionStorage.setItem(visitKey, "1");
 }
+
+initTurnstile();
+initReveal();
+initToneTransitions();
 
 function renderMessage(message, type) {
   if (!formMessage) {
@@ -120,12 +126,13 @@ async function initTurnstile() {
     }
 
     turnstileRequired = true;
-
     await waitForTurnstileScript();
+
     if (!window.turnstile) {
       turnstileRequired = false;
       return;
     }
+
     window.turnstile.render("#turnstile-widget", {
       sitekey: config.turnstileSiteKey,
       callback: (token) => {
@@ -162,8 +169,16 @@ function waitForTurnstileScript() {
   });
 }
 
-const revealElements = document.querySelectorAll(".reveal");
-if ("IntersectionObserver" in window && revealElements.length) {
+function initReveal() {
+  revealElements.forEach((element, index) => {
+    element.style.transitionDelay = `${Math.min(index * 80, 280)}ms`;
+  });
+
+  if (!("IntersectionObserver" in window) || !revealElements.length) {
+    revealElements.forEach((element) => element.classList.add("visible"));
+    return;
+  }
+
   const observer = new IntersectionObserver(
     (entries) => {
       for (const entry of entries) {
@@ -174,12 +189,33 @@ if ("IntersectionObserver" in window && revealElements.length) {
       }
     },
     {
-      threshold: 0.18,
-      rootMargin: "0px 0px -60px 0px",
+      threshold: 0.14,
+      rootMargin: "0px 0px -72px 0px",
     },
   );
 
   revealElements.forEach((element) => observer.observe(element));
-} else {
-  revealElements.forEach((element) => element.classList.add("visible"));
+}
+
+function initToneTransitions() {
+  if (!toneSections.length) {
+    return;
+  }
+
+  const updateTone = () => {
+    const viewportMid = window.scrollY + window.innerHeight * 0.45;
+    let currentTone = 0;
+
+    toneSections.forEach((section) => {
+      if (section.offsetTop <= viewportMid) {
+        currentTone = Number(section.dataset.sectionTone || 0);
+      }
+    });
+
+    document.body.style.setProperty("--tone", String(currentTone));
+  };
+
+  updateTone();
+  window.addEventListener("scroll", updateTone, { passive: true });
+  window.addEventListener("resize", updateTone);
 }

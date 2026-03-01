@@ -3,15 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SahaCare | Care Across Every Distance</title>
+    <title>SahaCare | Caring Across Distance</title>
     <meta
       name="description"
-      content="SahaCare helps Indian and Desi families stay on top of parent health, medications, and care updates from anywhere."
+      content="SahaCare helps families coordinate elder health across distance with shared logs, reminders, and trusted updates."
     />
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Manrope:wght@500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <script
@@ -22,99 +23,215 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body class="theme-home">
-    <div class="bg-orb orb-1" aria-hidden="true"></div>
-    <div class="bg-orb orb-2" aria-hidden="true"></div>
+    <div class="bg-layer bg-layer-a" aria-hidden="true"></div>
+    <div class="bg-layer bg-layer-b" aria-hidden="true"></div>
+    <div class="bg-layer bg-layer-c" aria-hidden="true"></div>
 
     <header class="site-header">
       <div class="container nav">
-        <a class="brand" href="./index.html">SahaCare</a>
+        <a class="brand" href="#top" aria-label="SahaCare home">
+          <img src="./assets/logo-mark.svg" alt="SahaCare logo" />
+          <span>SahaCare</span>
+        </a>
         <nav>
-          <a href="#about">About</a>
+          <a href="#why">About</a>
+          <a href="#features">Features</a>
+          <a href="#how">How it works</a>
           <a href="#waitlist">Join Waitlist</a>
-          <a href="./how-it-works.html">How It Works</a>
         </nav>
       </div>
     </header>
 
-    <main>
-      <section class="hero reveal">
-        <div class="container hero-layout">
+    <main id="top">
+      <section class="hero reveal" data-section-tone="0.03">
+        <div class="container hero-grid">
           <div class="hero-copy">
-            <p class="eyebrow">Family care for Desi homes worldwide</p>
-            <h1>When your parents are far, their care should not feel far.</h1>
+            <p class="eyebrow">Care together, even miles apart</p>
+            <h1>Sahacare, caring across distance.</h1>
             <p class="subtitle">
-              SahaCare brings medications, doctor updates, and daily health
-              signals into one calm family view so everyone stays aligned.
+              Aggregate your parents' health data, medication, and care activity in one shared family view.
             </p>
-            <div class="hero-cta">
+            <div class="hero-actions">
               <a class="button" href="#waitlist">Join the Waitlist</a>
-              <a class="button ghost" href="#about">Learn More</a>
+              <a class="button ghost" href="#features">Learn More</a>
             </div>
-            <div class="trust-row" aria-label="Core value indicators">
-              <span>Private sharing</span>
-              <span>Elder-friendly</span>
-              <span>One family timeline</span>
+            <div class="hero-trust">
+              <span>Privacy-first sharing</span>
+              <span>Elder-friendly experience</span>
+              <span>Reliable care logs</span>
             </div>
           </div>
 
-          <div class="hero-visual" role="img" aria-label="Indian family together at home">
-            <img
-              src="https://images.unsplash.com/photo-1590086782792-42dd2350140d?auto=format&fit=crop&w=1300&q=80"
-              alt="Smiling Indian family sitting together in a living room"
-              loading="eager"
-            />
-            <div class="metric-card top">
-              <span class="metric-icon">❤</span>
-              <div>
-                <p class="metric-title">Medication Adherence</p>
-                <p class="metric-value">92% this week</p>
-              </div>
-            </div>
-            <div class="metric-card bottom">
-              <span class="metric-icon">✓</span>
-              <div>
-                <p class="metric-title">Doctor Follow-up</p>
-                <p class="metric-value">Shared with family</p>
-              </div>
+          <div class="hero-visual" aria-hidden="true">
+            <div class="emblem"></div>
+            <div class="signal signal-a"></div>
+            <div class="signal signal-b"></div>
+            <div class="signal signal-c"></div>
+            <div class="hero-overlay card">
+              <p class="card-label">Live care status</p>
+              <p class="card-value">Medication adherence 92%</p>
+              <p class="card-foot">Family synced 5m ago</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="about" class="about reveal">
-        <div class="container section-shell">
-          <h2>About SahaCare</h2>
-          <p>
-            Families already use wearables and health apps, but data is split
-            across devices and people. SahaCare connects the picture for adult
-            children, elders, and caregivers with consent-first sharing.
-          </p>
-          <div class="feature-grid">
-            <article class="feature">
-              <h3>Unified health timeline</h3>
-              <p>See meds, appointments, doses, and care notes in one stream.</p>
-            </article>
-            <article class="feature">
-              <h3>Proactive family alerts</h3>
-              <p>Know what needs attention before it becomes a bigger concern.</p>
-            </article>
-            <article class="feature">
-              <h3>Built for real caregivers</h3>
-              <p>Designed for cross-city and cross-country Desi family routines.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="waitlist" class="waitlist reveal">
-        <div class="container section-shell waitlist-shell">
-          <div>
-            <p class="eyebrow">Early Access</p>
-            <h2>Join the first wave of families shaping SahaCare.</h2>
+      <section id="why" class="section reveal" data-section-tone="0.15">
+        <div class="container two-col compact">
+          <article class="panel">
+            <p class="eyebrow">Why SahaCare</p>
+            <h2>Care, together by design.</h2>
             <p>
-              Leave your email and role. We will invite you for early access and
-              product interviews.
+              “Saha” comes from Sanskrit roots meaning together. SahaCare is built for millennials supporting
+              elders across homes, cities, and countries.
             </p>
+          </article>
+          <article class="panel icon-list">
+            <h3>Core values</h3>
+            <ul>
+              <li><span>🔐</span> Privacy-first access controls</li>
+              <li><span>👨‍👩‍👧‍👦</span> Family-first coordination</li>
+              <li><span>🗂</span> Reliable care timeline logs</li>
+              <li><span>🩺</span> Doctor and clinic continuity</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section reveal" data-section-tone="0.25">
+        <div class="container logging-layout">
+          <div class="logging-visual panel">
+            <div class="flow-node">Watch</div>
+            <div class="flow-node">Ring</div>
+            <div class="flow-node">BP Monitor</div>
+            <div class="flow-node center">Family Dashboard</div>
+            <div class="flow-node">Doctor Note</div>
+            <div class="flow-node">Caregiver Log</div>
+          </div>
+          <div class="panel">
+            <p class="eyebrow">Effortless health logging</p>
+            <h2>One flow for devices, families, and care teams.</h2>
+            <p>
+              Data can come from devices, manual entries, caregivers, and doctors. Sahacare makes that signal
+              understandable and actionable for everyone in the family.
+            </p>
+            <div class="bullet-grid">
+              <p>Multi-device aggregation</p>
+              <p>Manual caregiver logs</p>
+              <p>Doctor and clinic notes</p>
+              <p>Shared notifications</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" class="section reveal" data-section-tone="0.4">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">Key Features</p>
+            <h2>Built for daily caregiving reality.</h2>
+          </div>
+          <div class="feature-strip">
+            <article class="feature-card">
+              <h3>Multi-device aggregation</h3>
+              <p>Bring smartwatch, ring, and monitor data into one calm timeline.</p>
+            </article>
+            <article class="feature-card">
+              <h3>Shared family timeline</h3>
+              <p>Keep siblings and caregivers aligned without scattered chats.</p>
+            </article>
+            <article class="feature-card">
+              <h3>Medication cadence</h3>
+              <p>Track doses, appointments, and reminders with completion visibility.</p>
+            </article>
+            <article class="feature-card">
+              <h3>Doctor updates</h3>
+              <p>Let clinics share secure updates visible to approved family members.</p>
+            </article>
+            <article class="feature-card">
+              <h3>AI anomaly cues</h3>
+              <p>Surface early warning patterns so families can act sooner.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="how" class="section reveal" data-section-tone="0.55">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">How It Works</p>
+            <h2>Three simple steps.</h2>
+          </div>
+          <div class="steps-grid">
+            <article class="step-card">
+              <span>01</span>
+              <h3>Connect devices</h3>
+              <p>Start with health apps, wearables, and manual caregiver inputs.</p>
+            </article>
+            <article class="step-card">
+              <span>02</span>
+              <h3>Invite family</h3>
+              <p>Parents control who can view what with clear permissions.</p>
+            </article>
+            <article class="step-card">
+              <span>03</span>
+              <h3>Act on insights</h3>
+              <p>Receive timely prompts and risk cues before issues escalate.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal" data-section-tone="0.7">
+        <div class="container two-col">
+          <article class="panel ai-panel">
+            <p class="eyebrow">AI Insights Preview</p>
+            <h2>Signal, not noise.</h2>
+            <div class="chart-mock" aria-hidden="true">
+              <span class="bar" style="--h: 26%"></span>
+              <span class="bar" style="--h: 45%"></span>
+              <span class="bar" style="--h: 36%"></span>
+              <span class="bar" style="--h: 67%"></span>
+              <span class="bar" style="--h: 52%"></span>
+              <span class="bar" style="--h: 74%"></span>
+            </div>
+            <div class="insight card">
+              <p>
+                Sahacare noticed elevated resting heart-rate trend on 21 Feb. Consider scheduling a check-in.
+              </p>
+            </div>
+          </article>
+
+          <article class="panel">
+            <p class="eyebrow">Care Provider Integrations</p>
+            <h2>Keep doctor updates in family context.</h2>
+            <p>
+              Clinics can post visit updates and care instructions to an approved family timeline so the next step
+              is never lost.
+            </p>
+            <p class="callout">Secure updates from clinics and hospitals.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section reveal" data-section-tone="0.82">
+        <div class="container panel privacy-panel">
+          <p class="eyebrow">Privacy & Compliance</p>
+          <p>
+            We treat health data with strong safeguards: encryption in transit and at rest, role-based access,
+            and privacy-aligned operational practices. We design for applicable healthcare and data-protection
+            requirements where relevant.
+          </p>
+          <a href="./privacy.html">Read full Privacy Policy</a>
+        </div>
+      </section>
+
+      <section id="waitlist" class="section reveal" data-section-tone="1">
+        <div class="container panel waitlist-panel">
+          <div>
+            <p class="eyebrow">Join Early Access</p>
+            <h2>Help shape Sahacare’s first release.</h2>
+            <p>Enter your email and role. We’ll invite selected families and caregivers first.</p>
           </div>
 
           <form id="waitlist-form" class="waitlist-form" novalidate>
@@ -129,21 +246,14 @@
             </select>
 
             <label for="company" class="hp-field">Company</label>
-            <input
-              id="company"
-              name="company"
-              class="hp-field"
-              type="text"
-              tabindex="-1"
-              autocomplete="off"
-            />
+            <input id="company" name="company" class="hp-field" type="text" tabindex="-1" autocomplete="off" />
 
             <div id="turnstile-widget" class="turnstile-wrap" aria-label="Security verification"></div>
 
             <button class="button" type="submit">Join the Waitlist</button>
             <p class="legal-note">
-              By joining, you agree to our
-              <a href="./terms.html">Terms</a> and <a href="./privacy.html">Privacy Policy</a>.
+              By joining, you agree to our <a href="./terms.html">Terms</a> and
+              <a href="./privacy.html">Privacy Policy</a>.
             </p>
             <p id="form-message" class="form-message" aria-live="polite"></p>
           </form>
@@ -152,12 +262,22 @@
     </main>
 
     <footer class="site-footer">
-      <div class="container footer-inner">
-        <p>© <span id="year"></span> SahaCare</p>
+      <div class="container footer-grid">
+        <div>
+          <p>© 2026 Sahacare — All Rights Reserved.</p>
+          <p class="tagline">Care together. Across every distance.</p>
+        </div>
         <div class="footer-links">
-          <a href="./how-it-works.html">See product flow</a>
+          <a href="#why">About</a>
+          <a href="#how">How it works</a>
           <a href="./privacy.html">Privacy</a>
           <a href="./terms.html">Terms</a>
+          <a href="#waitlist">Join the waitlist</a>
+        </div>
+        <div class="social-links" aria-label="SahaCare social links">
+          <a href="#" aria-label="X">𝕏</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="Instagram">◎</a>
         </div>
       </div>
     </footer>
