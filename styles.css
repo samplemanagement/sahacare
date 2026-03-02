@@ -29,11 +29,11 @@ body {
   background:
     linear-gradient(
       180deg,
-      #fff7ef 0%,
-      #fdf1e4 24%,
-      #fbe8d8 52%,
-      #f9e2d0 76%,
-      #f7dcc9 100%
+      #fff8f1 0%,
+      #fdf1e5 28%,
+      #fbe8d8 58%,
+      #f9e1cf 82%,
+      #f6dcc8 100%
     );
   overflow-x: hidden;
 }
@@ -44,7 +44,7 @@ a {
 
 .bg-layer {
   position: fixed;
-  inset: -22% -14%;
+  inset: -24% -16%;
   pointer-events: none;
   z-index: -2;
   will-change: transform, opacity;
@@ -52,48 +52,48 @@ a {
 
 .bg-layer-a {
   background:
-    radial-gradient(circle at 10% 16%, rgb(252 194 157 / 0.42) 0%, transparent 54%),
-    radial-gradient(circle at 54% 94%, rgb(255 162 133 / 0.2) 0%, transparent 46%);
+    radial-gradient(circle at 10% 18%, rgb(255 182 142 / 0.72) 0%, transparent 56%),
+    radial-gradient(circle at 36% 96%, rgb(255 156 126 / 0.42) 0%, transparent 50%);
   transform:
     translate3d(
-      calc((var(--scroll-progress) - 0.5) * -60px),
-      calc(var(--scroll-progress) * -72px),
+      calc((var(--scroll-progress) - 0.5) * -72px),
+      calc(var(--scroll-progress) * -90px),
       0
     );
-  opacity: calc(0.62 - (var(--tone, 0) * 0.12));
+  opacity: calc(0.74 - (var(--tone, 0) * 0.08));
   animation: ombreDriftA 20s ease-in-out infinite alternate;
 }
 
 .bg-layer-b {
   background:
-    radial-gradient(circle at 88% 14%, rgb(178 166 255 / 0.22) 0%, transparent 56%),
-    radial-gradient(circle at 72% 52%, rgb(204 195 255 / 0.14) 0%, transparent 38%);
-  opacity: calc(0.24 + var(--tone, 0) * 0.16);
-  transition: opacity 0.45s ease;
-  filter: blur(14px);
-  transform:
-    translate3d(
-      calc((var(--scroll-progress) - 0.5) * 90px),
-      calc(var(--scroll-progress) * 68px),
-      0
-    );
-  animation: ombreDriftB 24s ease-in-out infinite alternate;
-}
-
-.bg-layer-c {
-  background:
-    radial-gradient(circle at 56% 90%, rgb(255 141 118 / 0.26) 0%, transparent 54%),
-    radial-gradient(circle at 24% 72%, rgb(255 200 167 / 0.2) 0%, transparent 36%);
-  opacity: calc(0.22 + var(--tone, 0) * 0.14);
+    radial-gradient(circle at 90% 12%, rgb(160 146 255 / 0.44) 0%, transparent 58%),
+    radial-gradient(circle at 70% 46%, rgb(200 189 255 / 0.24) 0%, transparent 40%);
+  opacity: calc(0.44 + var(--tone, 0) * 0.22);
   transition: opacity 0.45s ease;
   filter: blur(12px);
   transform:
     translate3d(
-      calc((var(--scroll-progress) - 0.5) * -54px),
-      calc(var(--scroll-progress) * 84px),
+      calc((var(--scroll-progress) - 0.5) * 112px),
+      calc(var(--scroll-progress) * 86px),
       0
     );
-  animation: ombreDriftC 18s ease-in-out infinite alternate;
+  animation: ombreDriftB 22s ease-in-out infinite alternate;
+}
+
+.bg-layer-c {
+  background:
+    radial-gradient(circle at 58% 92%, rgb(255 128 108 / 0.38) 0%, transparent 56%),
+    radial-gradient(circle at 22% 74%, rgb(255 203 170 / 0.3) 0%, transparent 40%);
+  opacity: calc(0.34 + var(--tone, 0) * 0.18);
+  transition: opacity 0.45s ease;
+  filter: blur(10px);
+  transform:
+    translate3d(
+      calc((var(--scroll-progress) - 0.5) * -68px),
+      calc(var(--scroll-progress) * 108px),
+      0
+    );
+  animation: ombreDriftC 16s ease-in-out infinite alternate;
 }
 
 .container {
