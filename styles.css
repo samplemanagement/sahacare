@@ -1,5 +1,6 @@
 :root {
   --bg: #f7e8d7;
+  --scroll-progress: 0;
   --text: #0f1724;
   --muted: #6b7280;
   --accent-1: #ff7a6a;
@@ -39,12 +40,20 @@ a {
   inset: -28% -20%;
   pointer-events: none;
   z-index: -2;
+  will-change: transform, opacity;
 }
 
 .bg-layer-a {
   background:
     radial-gradient(circle at 8% 22%, rgb(244 180 138 / 0.75) 0%, transparent 56%),
     radial-gradient(circle at 52% 102%, rgb(255 140 118 / 0.36) 0%, transparent 48%);
+  transform:
+    translate3d(
+      calc((var(--scroll-progress) - 0.5) * -90px),
+      calc(var(--scroll-progress) * -120px),
+      0
+    );
+  animation: ombreDriftA 16s ease-in-out infinite alternate;
 }
 
 .bg-layer-b {
@@ -54,6 +63,13 @@ a {
   opacity: calc(0.42 + var(--tone, 0) * 0.46);
   transition: opacity 0.45s ease;
   filter: blur(10px);
+  transform:
+    translate3d(
+      calc((var(--scroll-progress) - 0.5) * 120px),
+      calc(var(--scroll-progress) * 90px),
+      0
+    );
+  animation: ombreDriftB 19s ease-in-out infinite alternate;
 }
 
 .bg-layer-c {
@@ -63,6 +79,13 @@ a {
   opacity: calc(0.28 + var(--tone, 0) * 0.34);
   transition: opacity 0.45s ease;
   filter: blur(8px);
+  transform:
+    translate3d(
+      calc((var(--scroll-progress) - 0.5) * -60px),
+      calc(var(--scroll-progress) * 140px),
+      0
+    );
+  animation: ombreDriftC 14s ease-in-out infinite alternate;
 }
 
 .container {
@@ -802,4 +825,19 @@ body.theme-flow {
     opacity: 1;
     transform: none;
   }
+}
+
+@keyframes ombreDriftA {
+  0% { filter: blur(10px) saturate(1); }
+  100% { filter: blur(18px) saturate(1.08); }
+}
+
+@keyframes ombreDriftB {
+  0% { filter: blur(8px) saturate(0.96); }
+  100% { filter: blur(20px) saturate(1.12); }
+}
+
+@keyframes ombreDriftC {
+  0% { filter: blur(6px) saturate(0.94); }
+  100% { filter: blur(16px) saturate(1.1); }
 }

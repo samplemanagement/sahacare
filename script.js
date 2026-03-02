@@ -212,7 +212,14 @@ function initToneTransitions() {
       }
     });
 
+    const maxScroll = Math.max(
+      1,
+      document.documentElement.scrollHeight - window.innerHeight,
+    );
+    const scrollProgress = Math.min(1, Math.max(0, window.scrollY / maxScroll));
+
     document.body.style.setProperty("--tone", String(currentTone));
+    document.body.style.setProperty("--scroll-progress", String(scrollProgress));
   };
 
   updateTone();
