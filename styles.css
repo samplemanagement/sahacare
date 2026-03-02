@@ -26,7 +26,7 @@ body {
   color: var(--text);
   line-height: 1.62;
   background:
-    linear-gradient(180deg, #f8ebdb 0%, #f7e8d7 36%, #f8ecdf 68%, #f8e6d7 100%);
+    linear-gradient(180deg, #faeede 0%, #f8e6d2 38%, #f7e2ce 66%, #f6dfc9 100%);
   overflow-x: hidden;
 }
 
@@ -36,25 +36,33 @@ a {
 
 .bg-layer {
   position: fixed;
-  inset: -24% -16%;
+  inset: -28% -20%;
   pointer-events: none;
   z-index: -2;
 }
 
 .bg-layer-a {
-  background: radial-gradient(circle at 8% 22%, #efc8a7 0%, transparent 52%);
+  background:
+    radial-gradient(circle at 8% 22%, rgb(244 180 138 / 0.75) 0%, transparent 56%),
+    radial-gradient(circle at 52% 102%, rgb(255 140 118 / 0.36) 0%, transparent 48%);
 }
 
 .bg-layer-b {
-  background: radial-gradient(circle at 88% 12%, rgb(124 107 255 / 0.2) 0%, transparent 44%);
-  opacity: calc(0.24 + var(--tone, 0) * 0.44);
+  background:
+    radial-gradient(circle at 88% 12%, rgb(124 107 255 / 0.42) 0%, transparent 52%),
+    radial-gradient(circle at 70% 55%, rgb(177 152 255 / 0.22) 0%, transparent 36%);
+  opacity: calc(0.42 + var(--tone, 0) * 0.46);
   transition: opacity 0.45s ease;
+  filter: blur(10px);
 }
 
 .bg-layer-c {
-  background: radial-gradient(circle at 56% 92%, rgb(255 122 106 / 0.24) 0%, transparent 46%);
-  opacity: calc(0.13 + var(--tone, 0) * 0.3);
+  background:
+    radial-gradient(circle at 56% 92%, rgb(255 122 106 / 0.45) 0%, transparent 52%),
+    radial-gradient(circle at 22% 74%, rgb(255 186 149 / 0.28) 0%, transparent 34%);
+  opacity: calc(0.28 + var(--tone, 0) * 0.34);
   transition: opacity 0.45s ease;
+  filter: blur(8px);
 }
 
 .container {
@@ -289,7 +297,7 @@ main {
 
 .story-visual {
   position: relative;
-  min-height: 480px;
+  min-height: 430px;
   border-radius: 22px;
   background:
     radial-gradient(circle at 20% 18%, rgb(255 122 106 / 0.2) 0%, transparent 36%),
@@ -303,12 +311,12 @@ main {
 }
 
 .story-map-image {
-  width: 100%;
-  height: 100%;
+  width: 105%;
+  height: calc(100% + 68px);
   object-fit: cover;
-  object-position: center;
+  object-position: center center;
   display: block;
-  transform: scale(1.01);
+  transform: translateY(-34px) scale(1.02);
 }
 
 .story-copy p {
