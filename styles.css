@@ -26,16 +26,28 @@ body {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--text);
   line-height: 1.62;
-  background:
-    linear-gradient(
-      180deg,
-      #fff8f1 0%,
-      #fdf1e5 28%,
-      #fbe8d8 58%,
-      #f9e1cf 82%,
-      #f6dcc8 100%
-    );
+  background: var(--bg);
   overflow-x: hidden;
+}
+
+body.theme-home {
+  background:
+    radial-gradient(circle at 8% 20%, #ffe4cc 0%, transparent 44%),
+    radial-gradient(circle at 92% 5%, #ffe7dd 0%, transparent 36%),
+    linear-gradient(175deg, #fff7ef 0%, #fff2e1 40%, #fff8f0 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  animation: homeOmbreShift 18s ease-in-out infinite alternate;
+}
+
+body.theme-flow {
+  background:
+    radial-gradient(circle at 0% 20%, #ffd8be 0%, transparent 46%),
+    radial-gradient(circle at 100% 90%, #ffe6d0 0%, transparent 40%),
+    linear-gradient(180deg, #fff8ef 0%, #fff0e8 60%, #fffaf2 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  animation: flowOmbreShift 18s ease-in-out infinite alternate;
 }
 
 a {
@@ -44,56 +56,40 @@ a {
 
 .bg-layer {
   position: fixed;
-  inset: -24% -16%;
+  inset: -12%;
   pointer-events: none;
   z-index: -2;
-  will-change: transform, opacity;
+  will-change: transform, opacity, background-position;
 }
 
 .bg-layer-a {
   background:
-    radial-gradient(circle at 10% 18%, rgb(255 182 142 / 0.72) 0%, transparent 56%),
-    radial-gradient(circle at 36% 96%, rgb(255 156 126 / 0.42) 0%, transparent 50%);
-  transform:
-    translate3d(
-      calc((var(--scroll-progress) - 0.5) * -72px),
-      calc(var(--scroll-progress) * -90px),
-      0
-    );
-  opacity: calc(0.74 - (var(--tone, 0) * 0.08));
-  animation: ombreDriftA 20s ease-in-out infinite alternate;
+    radial-gradient(circle at 15% 25%, rgb(255 188 152 / 0.42) 0%, transparent 42%),
+    radial-gradient(circle at 82% 18%, rgb(197 168 255 / 0.24) 0%, transparent 38%);
+  opacity: calc(0.54 + (var(--scroll-progress) * 0.1));
+  transform: translate3d(0, calc(var(--scroll-progress) * -90px), 0);
+  animation: layerDriftA 26s ease-in-out infinite alternate;
 }
 
 .bg-layer-b {
   background:
-    radial-gradient(circle at 90% 12%, rgb(160 146 255 / 0.44) 0%, transparent 58%),
-    radial-gradient(circle at 70% 46%, rgb(200 189 255 / 0.24) 0%, transparent 40%);
-  opacity: calc(0.44 + var(--tone, 0) * 0.22);
-  transition: opacity 0.45s ease;
-  filter: blur(12px);
-  transform:
-    translate3d(
-      calc((var(--scroll-progress) - 0.5) * 112px),
-      calc(var(--scroll-progress) * 86px),
-      0
-    );
-  animation: ombreDriftB 22s ease-in-out infinite alternate;
+    radial-gradient(circle at 18% 88%, rgb(255 165 132 / 0.26) 0%, transparent 44%),
+    radial-gradient(circle at 88% 72%, rgb(173 148 247 / 0.2) 0%, transparent 42%);
+  opacity: calc(0.34 + (var(--scroll-progress) * 0.16));
+  transform: translate3d(0, calc(var(--scroll-progress) * -130px), 0);
+  animation: layerDriftB 32s ease-in-out infinite alternate;
 }
 
 .bg-layer-c {
-  background:
-    radial-gradient(circle at 58% 92%, rgb(255 128 108 / 0.38) 0%, transparent 56%),
-    radial-gradient(circle at 22% 74%, rgb(255 203 170 / 0.3) 0%, transparent 40%);
-  opacity: calc(0.34 + var(--tone, 0) * 0.18);
-  transition: opacity 0.45s ease;
-  filter: blur(10px);
-  transform:
-    translate3d(
-      calc((var(--scroll-progress) - 0.5) * -68px),
-      calc(var(--scroll-progress) * 108px),
-      0
-    );
-  animation: ombreDriftC 16s ease-in-out infinite alternate;
+  background: linear-gradient(
+    180deg,
+    rgb(255 249 241 / 0.2) 0%,
+    rgb(255 231 214 / 0.35) 52%,
+    rgb(245 235 255 / 0.24) 100%
+  );
+  opacity: calc(0.42 + (var(--scroll-progress) * 0.2));
+  transform: translate3d(0, calc(var(--scroll-progress) * -70px), 0);
+  animation: layerDriftC 22s ease-in-out infinite alternate;
 }
 
 .container {
@@ -631,13 +627,6 @@ main {
 
 /* Secondary pages */
 
-body.theme-flow {
-  background:
-    radial-gradient(circle at 5% 18%, #ffe1cd 0%, transparent 43%),
-    radial-gradient(circle at 95% 12%, rgb(124 107 255 / 0.15) 0%, transparent 35%),
-    linear-gradient(180deg, #fdfaf7, #fff6ee 56%, #fdfbf8);
-}
-
 .page-hero,
 .steps,
 .cta,
@@ -824,7 +813,9 @@ body.theme-flow {
 
   .reveal,
   .button,
-  .bg-layer {
+  .bg-layer,
+  body.theme-home,
+  body.theme-flow {
     animation: none;
     transition: none;
   }
@@ -835,17 +826,47 @@ body.theme-flow {
   }
 }
 
-@keyframes ombreDriftA {
-  0% { filter: blur(10px) saturate(0.98) brightness(1.02); }
-  100% { filter: blur(16px) saturate(1.04) brightness(1.04); }
+@keyframes homeOmbreShift {
+  0% {
+    background-position: 8% 20%, 92% 5%, 50% 0%;
+  }
+  100% {
+    background-position: 6% 24%, 94% 8%, 50% 100%;
+  }
 }
 
-@keyframes ombreDriftB {
-  0% { filter: blur(10px) saturate(0.92) brightness(1.03); }
-  100% { filter: blur(18px) saturate(1.02) brightness(1.05); }
+@keyframes flowOmbreShift {
+  0% {
+    background-position: 0% 20%, 100% 90%, 50% 0%;
+  }
+  100% {
+    background-position: 4% 24%, 96% 86%, 50% 100%;
+  }
 }
 
-@keyframes ombreDriftC {
-  0% { filter: blur(8px) saturate(0.94) brightness(1.02); }
-  100% { filter: blur(14px) saturate(1.02) brightness(1.04); }
+@keyframes layerDriftA {
+  0% {
+    background-position: 12% 22%, 84% 16%;
+  }
+  100% {
+    background-position: 17% 30%, 79% 22%;
+  }
+}
+
+@keyframes layerDriftB {
+  0% {
+    background-position: 16% 86%, 86% 70%;
+  }
+  100% {
+    background-position: 10% 80%, 90% 78%;
+  }
+}
+
+@keyframes layerDriftC {
+  0% {
+    transform: translate3d(0, calc(var(--scroll-progress) * -70px), 0);
+  }
+  100% {
+    transform: translate3d(0, calc(var(--scroll-progress) * -95px), 0);
+  }
 }
