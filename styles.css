@@ -27,7 +27,14 @@ body {
   color: var(--text);
   line-height: 1.62;
   background:
-    linear-gradient(180deg, #faeede 0%, #f8e6d2 38%, #f7e2ce 66%, #f6dfc9 100%);
+    linear-gradient(
+      180deg,
+      #fff7ef 0%,
+      #fdf1e4 24%,
+      #fbe8d8 52%,
+      #f9e2d0 76%,
+      #f7dcc9 100%
+    );
   overflow-x: hidden;
 }
 
@@ -37,7 +44,7 @@ a {
 
 .bg-layer {
   position: fixed;
-  inset: -28% -20%;
+  inset: -22% -14%;
   pointer-events: none;
   z-index: -2;
   will-change: transform, opacity;
@@ -45,47 +52,48 @@ a {
 
 .bg-layer-a {
   background:
-    radial-gradient(circle at 8% 22%, rgb(244 180 138 / 0.75) 0%, transparent 56%),
-    radial-gradient(circle at 52% 102%, rgb(255 140 118 / 0.36) 0%, transparent 48%);
+    radial-gradient(circle at 10% 16%, rgb(252 194 157 / 0.42) 0%, transparent 54%),
+    radial-gradient(circle at 54% 94%, rgb(255 162 133 / 0.2) 0%, transparent 46%);
   transform:
     translate3d(
-      calc((var(--scroll-progress) - 0.5) * -90px),
-      calc(var(--scroll-progress) * -120px),
+      calc((var(--scroll-progress) - 0.5) * -60px),
+      calc(var(--scroll-progress) * -72px),
       0
     );
-  animation: ombreDriftA 16s ease-in-out infinite alternate;
+  opacity: calc(0.62 - (var(--tone, 0) * 0.12));
+  animation: ombreDriftA 20s ease-in-out infinite alternate;
 }
 
 .bg-layer-b {
   background:
-    radial-gradient(circle at 88% 12%, rgb(124 107 255 / 0.42) 0%, transparent 52%),
-    radial-gradient(circle at 70% 55%, rgb(177 152 255 / 0.22) 0%, transparent 36%);
-  opacity: calc(0.42 + var(--tone, 0) * 0.46);
+    radial-gradient(circle at 88% 14%, rgb(178 166 255 / 0.22) 0%, transparent 56%),
+    radial-gradient(circle at 72% 52%, rgb(204 195 255 / 0.14) 0%, transparent 38%);
+  opacity: calc(0.24 + var(--tone, 0) * 0.16);
   transition: opacity 0.45s ease;
-  filter: blur(10px);
+  filter: blur(14px);
   transform:
     translate3d(
-      calc((var(--scroll-progress) - 0.5) * 120px),
-      calc(var(--scroll-progress) * 90px),
+      calc((var(--scroll-progress) - 0.5) * 90px),
+      calc(var(--scroll-progress) * 68px),
       0
     );
-  animation: ombreDriftB 19s ease-in-out infinite alternate;
+  animation: ombreDriftB 24s ease-in-out infinite alternate;
 }
 
 .bg-layer-c {
   background:
-    radial-gradient(circle at 56% 92%, rgb(255 122 106 / 0.45) 0%, transparent 52%),
-    radial-gradient(circle at 22% 74%, rgb(255 186 149 / 0.28) 0%, transparent 34%);
-  opacity: calc(0.28 + var(--tone, 0) * 0.34);
+    radial-gradient(circle at 56% 90%, rgb(255 141 118 / 0.26) 0%, transparent 54%),
+    radial-gradient(circle at 24% 72%, rgb(255 200 167 / 0.2) 0%, transparent 36%);
+  opacity: calc(0.22 + var(--tone, 0) * 0.14);
   transition: opacity 0.45s ease;
-  filter: blur(8px);
+  filter: blur(12px);
   transform:
     translate3d(
-      calc((var(--scroll-progress) - 0.5) * -60px),
-      calc(var(--scroll-progress) * 140px),
+      calc((var(--scroll-progress) - 0.5) * -54px),
+      calc(var(--scroll-progress) * 84px),
       0
     );
-  animation: ombreDriftC 14s ease-in-out infinite alternate;
+  animation: ombreDriftC 18s ease-in-out infinite alternate;
 }
 
 .container {
@@ -828,16 +836,16 @@ body.theme-flow {
 }
 
 @keyframes ombreDriftA {
-  0% { filter: blur(10px) saturate(1); }
-  100% { filter: blur(18px) saturate(1.08); }
+  0% { filter: blur(10px) saturate(0.98) brightness(1.02); }
+  100% { filter: blur(16px) saturate(1.04) brightness(1.04); }
 }
 
 @keyframes ombreDriftB {
-  0% { filter: blur(8px) saturate(0.96); }
-  100% { filter: blur(20px) saturate(1.12); }
+  0% { filter: blur(10px) saturate(0.92) brightness(1.03); }
+  100% { filter: blur(18px) saturate(1.02) brightness(1.05); }
 }
 
 @keyframes ombreDriftC {
-  0% { filter: blur(6px) saturate(0.94); }
-  100% { filter: blur(16px) saturate(1.1); }
+  0% { filter: blur(8px) saturate(0.94) brightness(1.02); }
+  100% { filter: blur(14px) saturate(1.02) brightness(1.04); }
 }
