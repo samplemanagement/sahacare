@@ -575,6 +575,22 @@ main {
 
 .form-message.success { color: #1f7f4c; }
 .form-message.error { color: #b03232; }
+.form-message.loading {
+  color: #5a6477;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.form-message.loading::before {
+  content: "";
+  width: 0.86rem;
+  height: 0.86rem;
+  border: 2px solid rgb(90 100 119 / 0.28);
+  border-top-color: #5a6477;
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+}
 
 .site-footer {
   border-top: 1px solid var(--line);
@@ -783,15 +799,38 @@ main {
 
 @media (max-width: 640px) {
   .nav {
-    min-height: 66px;
+    min-height: 64px;
+    gap: 0.55rem;
   }
 
   nav {
-    gap: 0.55rem;
+    margin-left: auto;
+    gap: 0.42rem;
   }
 
   nav a {
     font-size: 0.84rem;
+  }
+
+  .brand {
+    gap: 0.48rem;
+  }
+
+  .brand span {
+    font-size: 1.05rem;
+  }
+
+  .nav-link-mobile-hide {
+    display: none;
+  }
+
+  .nav-link-mobile-priority {
+    display: inline-flex;
+  }
+
+  .nav-cta {
+    padding: 0.34rem 0.62rem;
+    font-size: 0.82rem;
   }
 
   .hero-image-shell {
@@ -868,5 +907,11 @@ main {
   }
   100% {
     transform: translate3d(0, calc(var(--scroll-progress) * -95px), 0);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
 }

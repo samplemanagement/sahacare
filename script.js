@@ -6,6 +6,9 @@ if (year) {
 const waitlistForm = document.getElementById("waitlist-form");
 const formMessage = document.getElementById("form-message");
 const turnstileContainer = document.getElementById("turnstile-widget");
+const waitlistSubmitButton = waitlistForm
+  ? waitlistForm.querySelector('button[type="submit"]')
+  : null;
 const revealElements = document.querySelectorAll(".reveal");
 const toneSections = document.querySelectorAll("[data-section-tone]");
 
@@ -36,6 +39,9 @@ if (waitlistForm) {
       renderMessage("Please complete the security check.", "error");
       return;
     }
+
+    setSubmitting(true);
+    renderMessage("Joining the waitlist...", "loading");
 
     try {
       const response = await fetch("/api/waitlist", {
@@ -80,6 +86,8 @@ if (waitlistForm) {
       renderMessage("You are in. Check your email for confirmation.", "success");
     } catch (_error) {
       renderMessage("Network issue. Please try again in a moment.", "error");
+    } finally {
+      setSubmitting(false);
     }
   });
 }
@@ -109,8 +117,17 @@ function renderMessage(message, type) {
   }
 
   formMessage.textContent = message;
-  formMessage.classList.remove("success", "error");
+  formMessage.classList.remove("success", "error", "loading");
   formMessage.classList.add(type);
+}
+
+function setSubmitting(submitting) {
+  if (!waitlistSubmitButton) {
+    return;
+  }
+
+  waitlistSubmitButton.disabled = submitting;
+  waitlistSubmitButton.textContent = submitting ? "Joining..." : "Join the Waitlist";
 }
 
 async function initTurnstile() {
