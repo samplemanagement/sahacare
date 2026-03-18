@@ -504,6 +504,47 @@ main {
   line-height: 1.5;
 }
 
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.9rem;
+}
+
+.faq-card {
+  padding: 1.15rem;
+}
+
+.faq-card h3,
+.source-card h3 {
+  margin-bottom: 0.55rem;
+}
+
+.sources-panel {
+  padding: 1.15rem;
+}
+
+.sources-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.9rem;
+}
+
+.source-card {
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: rgb(255 255 255 / 0.72);
+  padding: 1rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.source-card a {
+  display: inline-flex;
+  margin-top: 0.7rem;
+  color: #8e3b25;
+  font-weight: 700;
+  text-decoration: none;
+}
+
 .waitlist-panel {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
@@ -564,6 +605,38 @@ main {
   color: #8e3b25;
   font-weight: 700;
   text-decoration: none;
+}
+
+.form-shell {
+  display: grid;
+  grid-template-columns: 1fr 0.95fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+.contact-form {
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  padding: 1rem;
+  background: rgb(255 255 255 / 0.82);
+  display: grid;
+  gap: 0.56rem;
+}
+
+.contact-form textarea {
+  width: 100%;
+  min-height: 180px;
+  padding: 0.72rem;
+  border: 1px solid #bcc5d4;
+  border-radius: 10px;
+  font: inherit;
+  background: #fff;
+  resize: vertical;
+}
+
+.contact-form textarea:focus {
+  outline: 2px solid rgb(255 122 106 / 0.3);
+  border-color: #cf614d;
 }
 
 .form-message {
@@ -760,6 +833,7 @@ main {
   .hero-clean-grid,
   .two-col,
   .story-shell,
+  .form-shell,
   .waitlist-panel,
   .footer-grid {
     grid-template-columns: 1fr;
@@ -789,6 +863,11 @@ main {
   }
 
   .how-two-col {
+    grid-template-columns: 1fr;
+  }
+
+  .faq-grid,
+  .sources-grid {
     grid-template-columns: 1fr;
   }
 

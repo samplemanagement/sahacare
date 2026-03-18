@@ -8,13 +8,23 @@
       name="description"
       content="SahaCare helps families coordinate elder health across distance with shared logs, reminders, and trusted updates."
     />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://sahacare.me/" />
     <meta property="og:title" content="SahaCare | Caring Across Distance" />
     <meta
       property="og:description"
       content="A warm, shared caregiving space for families supporting parents and elders across distance."
     />
+    <meta property="og:url" content="https://sahacare.me/" />
     <meta property="og:image" content="https://sahacare.me/assets/hero-landing.png" />
     <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="SahaCare | Caring Across Distance" />
+    <meta
+      name="twitter:description"
+      content="A warm, shared caregiving space for families supporting parents and elders across distance."
+    />
+    <meta name="twitter:image" content="https://sahacare.me/assets/hero-landing.png" />
     <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,6 +37,89 @@
       async
       defer
     ></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://sahacare.me/#organization",
+            "name": "SahaCare",
+            "url": "https://sahacare.me/",
+            "logo": "https://sahacare.me/assets/logo-mark.svg",
+            "description": "SahaCare helps families coordinate elder health updates, medication routines, and care visibility across distance.",
+            "contactPoint": [
+              {
+                "@type": "ContactPoint",
+                "contactType": "customer support",
+                "url": "https://sahacare.me/contact.html",
+                "availableLanguage": ["en", "hi"]
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://sahacare.me/#website",
+            "url": "https://sahacare.me/",
+            "name": "SahaCare",
+            "publisher": {
+              "@id": "https://sahacare.me/#organization"
+            }
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://sahacare.me/#webpage",
+            "url": "https://sahacare.me/",
+            "name": "SahaCare | Caring Across Distance",
+            "description": "SahaCare helps families coordinate elder health across distance with shared logs, reminders, and trusted updates.",
+            "isPartOf": {
+              "@id": "https://sahacare.me/#website"
+            },
+            "about": {
+              "@id": "https://sahacare.me/#organization"
+            }
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://sahacare.me/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How is SahaCare different from a personal health app?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "SahaCare is designed for family caregiving. It brings together updates from wearables, medication logs, doctor notes, and caregiver check-ins into one shared family view."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is SahaCare only for families living in the same city?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. SahaCare is meant for families supporting parents and elders across cities or countries, while staying aligned on the details that matter."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does SahaCare replace medical advice or a doctor?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. SahaCare is a coordination layer for families. It does not replace doctors, clinical judgment, or emergency care."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Who is joining the waitlist today?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The waitlist is open to adult children, caregivers, and parents or elder users who want to help shape the first version of SahaCare."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body class="theme-home">
@@ -206,6 +299,104 @@
         </div>
       </section>
 
+      <section id="faq" class="section reveal" data-section-tone="0.86">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">Common Questions</p>
+            <h2>Clear answers for families evaluating SahaCare.</h2>
+          </div>
+          <div class="faq-grid">
+            <article class="panel faq-card">
+              <h3>How is SahaCare different from a personal health app?</h3>
+              <p>
+                SahaCare is designed for family caregiving. It brings together updates from wearables, medication
+                logs, doctor notes, and caregiver check-ins into one shared family view.
+              </p>
+            </article>
+            <article class="panel faq-card">
+              <h3>Is SahaCare only for families living in the same city?</h3>
+              <p>
+                No. SahaCare is meant for families supporting parents and elders across cities or countries, while
+                staying aligned on the details that matter.
+              </p>
+            </article>
+            <article class="panel faq-card">
+              <h3>Does SahaCare replace medical advice or a doctor?</h3>
+              <p>
+                No. SahaCare is a coordination layer for families. It does not replace doctors, clinical judgment,
+                or emergency care.
+              </p>
+            </article>
+            <article class="panel faq-card">
+              <h3>Who is joining the waitlist today?</h3>
+              <p>
+                The waitlist is open to adult children, caregivers, and parents or elder users who want to help
+                shape the first version of SahaCare.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="sources" class="section reveal" data-section-tone="0.93">
+        <div class="container panel sources-panel">
+          <div class="section-head">
+            <p class="eyebrow">Trusted Sources</p>
+            <h2>Built with the realities of ageing, caregiving, and medication safety in mind.</h2>
+          </div>
+          <div class="sources-grid">
+            <article class="source-card">
+              <h3>WHO on healthy ageing</h3>
+              <p>
+                WHO emphasizes healthy ageing, person-centred integrated care, and long-term support that helps
+                older adults maintain wellbeing and function.
+              </p>
+              <a href="https://www.who.int/health-topics/ageing" target="_blank" rel="noreferrer">
+                Read the WHO ageing overview
+              </a>
+            </article>
+            <article class="source-card">
+              <h3>WHO on integrated care for older people</h3>
+              <p>
+                WHO's ICOPE approach focuses on coordinated care that better aligns services around the needs of
+                older adults.
+              </p>
+              <a
+                href="https://www.who.int/teams/maternal-newborn-child-adolescent-health-and-ageing/ageing-and-health/integrated-care-for-older-people-icope"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Read about ICOPE
+              </a>
+            </article>
+            <article class="source-card">
+              <h3>CDC on medication safety</h3>
+              <p>
+                The CDC highlights medication safety as an important part of preventing harm, especially for older
+                adults and caregivers managing multiple medicines.
+              </p>
+              <a href="https://www.cdc.gov/medication-safety/about/index.html" target="_blank" rel="noreferrer">
+                Read the CDC medication safety overview
+              </a>
+            </article>
+            <article class="source-card">
+              <h3>NIA on health maintenance in older age</h3>
+              <p>
+                The National Institute on Aging encourages older adults to keep up with screenings, manage chronic
+                conditions, and review medicines with clinicians.
+              </p>
+              <a
+                href="https://www.nia.nih.gov/health/brain-health/cognitive-health-and-older-adults"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Read the NIA guidance
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section id="waitlist" class="section reveal" data-section-tone="1">
         <div class="container panel waitlist-panel">
           <div>
@@ -253,6 +444,7 @@
         <div class="footer-links">
           <a href="#why">About</a>
           <a href="#how">How it works</a>
+          <a href="./contact.html">Email us</a>
           <a href="./privacy.html">Privacy</a>
           <a href="./terms.html">Terms</a>
           <a href="#waitlist">Join the waitlist</a>

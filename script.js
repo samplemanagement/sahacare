@@ -9,6 +9,11 @@ const turnstileContainer = document.getElementById("turnstile-widget");
 const waitlistSubmitButton = waitlistForm
   ? waitlistForm.querySelector('button[type="submit"]')
   : null;
+const contactForm = document.getElementById("contact-form");
+const contactMessage = document.getElementById("contact-message");
+const contactSubmitButton = contactForm
+  ? contactForm.querySelector('button[type="submit"]')
+  : null;
 const revealElements = document.querySelectorAll(".reveal");
 const toneSections = document.querySelectorAll("[data-section-tone]");
 
@@ -92,6 +97,55 @@ if (waitlistForm) {
   });
 }
 
+if (contactForm) {
+  contactForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const data = new FormData(contactForm);
+    const name = String(data.get("name") || "").trim();
+    const email = String(data.get("email") || "").trim();
+    const message = String(data.get("message") || "").trim();
+    const company = String(data.get("company") || "").trim();
+
+    if (!name || !email || !message) {
+      renderInlineMessage(contactMessage, "Please add your name, email, and message.", "error");
+      return;
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      renderInlineMessage(contactMessage, "Please enter a valid email.", "error");
+      return;
+    }
+
+    setButtonState(contactSubmitButton, true, "Sending...");
+    renderInlineMessage(contactMessage, "Sending your message...", "loading");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, message, company }),
+      });
+
+      const body = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        renderInlineMessage(contactMessage, body.error || "Could not send your message right now.", "error");
+        return;
+      }
+
+      contactForm.reset();
+      renderInlineMessage(contactMessage, "Message sent. We will get back to you soon.", "success");
+    } catch (_error) {
+      renderInlineMessage(contactMessage, "Network issue. Please try again in a moment.", "error");
+    } finally {
+      setButtonState(contactSubmitButton, false, "Sending...", "Email us");
+    }
+  });
+}
+
 const visitKey = `sahacare_visit_${window.location.pathname}`;
 if (!sessionStorage.getItem(visitKey)) {
   fetch("/api/track-visit", {
@@ -112,22 +166,37 @@ initReveal();
 initToneTransitions();
 
 function renderMessage(message, type) {
-  if (!formMessage) {
+  renderInlineMessage(formMessage, message, type);
+}
+
+function renderInlineMessage(target, message, type) {
+  if (!target) {
     return;
   }
 
-  formMessage.textContent = message;
-  formMessage.classList.remove("success", "error", "loading");
-  formMessage.classList.add(type);
+  target.textContent = message;
+  target.classList.remove("success", "error", "loading");
+  target.classList.add(type);
+}
+
+function setButtonState(button, submitting, loadingLabel, idleLabel = null) {
+  if (!button) {
+    return;
+  }
+
+  button.disabled = submitting;
+  if (submitting) {
+    button.textContent = loadingLabel;
+    return;
+  }
+
+  if (idleLabel) {
+    button.textContent = idleLabel;
+  }
 }
 
 function setSubmitting(submitting) {
-  if (!waitlistSubmitButton) {
-    return;
-  }
-
-  waitlistSubmitButton.disabled = submitting;
-  waitlistSubmitButton.textContent = submitting ? "Joining..." : "Join the Waitlist";
+  setButtonState(waitlistSubmitButton, submitting, "Joining...", "Join the Waitlist");
 }
 
 async function initTurnstile() {

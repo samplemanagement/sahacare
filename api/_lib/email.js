@@ -9,7 +9,7 @@ class EmailSendError extends Error {
   }
 }
 
-async function sendEmail({ to, subject, html, text, from }) {
+async function sendEmail({ to, subject, html, text, from, replyTo }) {
   const apiKey = getEnv("RESEND_API_KEY");
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
@@ -23,6 +23,7 @@ async function sendEmail({ to, subject, html, text, from }) {
       subject,
       html,
       text,
+      reply_to: replyTo,
     }),
   });
 

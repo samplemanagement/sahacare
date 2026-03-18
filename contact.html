@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SahaCare | Contact</title>
+    <meta
+      name="description"
+      content="Contact SahaCare for waitlist, privacy, partnership, or early research questions."
+    />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://sahacare.me/contact.html" />
+    <meta property="og:title" content="SahaCare | Contact" />
+    <meta
+      property="og:description"
+      content="Contact SahaCare for waitlist, privacy, partnership, or early research questions."
+    />
+    <meta property="og:url" content="https://sahacare.me/contact.html" />
+    <meta property="og:image" content="https://sahacare.me/assets/hero-landing.png" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Manrope:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "ContactPage",
+            "name": "SahaCare Contact",
+            "url": "https://sahacare.me/contact.html",
+            "description": "Contact page for SahaCare questions about early access, privacy, and partnerships."
+          },
+          {
+            "@type": "WebPage",
+            "name": "SahaCare | Contact",
+            "url": "https://sahacare.me/contact.html"
+          }
+        ]
+      }
+    </script>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="theme-flow">
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="./index.html">
+          <img src="./assets/logo-mark.svg" alt="SahaCare logo" />
+          <span>SahaCare</span>
+        </a>
+        <nav>
+          <a href="./index.html">Home</a>
+          <a href="./how-it-works.html">How It Works</a>
+          <a href="./privacy.html">Privacy</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="legal-main">
+      <section class="container section-shell reveal">
+        <div class="form-shell">
+          <div class="legal-shell">
+            <p class="eyebrow">Contact</p>
+            <h1>Email us without exposing a public inbox.</h1>
+            <p class="subtitle">
+              Use this form for privacy requests, waitlist questions, research conversations, and partnership notes.
+            </p>
+          </div>
+
+          <form id="contact-form" class="contact-form" novalidate>
+            <label for="contact-name">Name</label>
+            <input id="contact-name" name="name" type="text" autocomplete="name" required />
+
+            <label for="contact-email">Email</label>
+            <input id="contact-email" name="email" type="email" autocomplete="email" required />
+
+            <label for="contact-message-body">Message</label>
+            <textarea id="contact-message-body" name="message" required></textarea>
+
+            <label for="contact-company" class="hp-field">Company</label>
+            <input
+              id="contact-company"
+              name="company"
+              class="hp-field"
+              type="text"
+              tabindex="-1"
+              autocomplete="off"
+            />
+
+            <button class="button" type="submit">Email us</button>
+            <p id="contact-message" class="form-message" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© <span id="year"></span> SahaCare</p>
+        <div class="footer-links">
+          <a href="./index.html">Home</a>
+          <a href="./how-it-works.html">How It Works</a>
+          <a href="./terms.html">Terms</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
